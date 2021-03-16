@@ -29,8 +29,9 @@ class ConceptoGastoDoctrineDAO extends CrudDAO implements IConceptoGastoDAO{
 
 		$queryBuilder = $this->getEntityManager()->createQueryBuilder();
 
-		$queryBuilder->select(array('cg'))
-	   				->from( $this->getClazz(), "cg");
+		$queryBuilder->select(array('cg','s'))
+	   				->from( $this->getClazz(), "cg")
+	   				->leftJoin('cg.site', 's');
 
 		return $queryBuilder;
 	}
@@ -40,7 +41,8 @@ class ConceptoGastoDoctrineDAO extends CrudDAO implements IConceptoGastoDAO{
 		$queryBuilder = $this->getEntityManager()->createQueryBuilder();
 
 		$queryBuilder->select('count(cg.oid)')
-	   				->from( $this->getClazz(), "cg");
+	   				->from( $this->getClazz(), "cg")
+	   				->leftJoin('cg.site', 's');
 
 		return $queryBuilder;
 	}
@@ -55,6 +57,16 @@ class ConceptoGastoDoctrineDAO extends CrudDAO implements IConceptoGastoDAO{
 		$nombre = $criteria->getNombre();
 		if( !empty($nombre) ){
 			$queryBuilder->andWhere( "cg.nombre like '%$nombre%'");
+		}
+		
+		$site = $criteria->getSite();
+		if( !empty($site) && $site!=null){
+			if (is_object($site)) {
+				$siteOid = $site->getOid();
+				if(!empty($siteOid))
+					$queryBuilder->andWhere( "s.oid= $siteOid" );
+			}
+			else $queryBuilder->andWhere( "s.nombre like '%$site%'");
 		}
 
 	}
