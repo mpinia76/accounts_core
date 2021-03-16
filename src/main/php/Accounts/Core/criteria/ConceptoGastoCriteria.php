@@ -15,6 +15,8 @@ class ConceptoGastoCriteria extends Criteria{
 	private $nombre;
 
 	private $oidNotEqual;
+	
+	private $site;
 
 
 	public function getNombre()
@@ -35,5 +37,15 @@ class ConceptoGastoCriteria extends Criteria{
 	public function setOidNotEqual($oidNotEqual)
 	{
 	    $this->oidNotEqual = $oidNotEqual;
+	}
+
+	public function getSite()
+	{
+	    return $this->site;
+	}
+
+	public function setSite($site)
+	{
+	    $this->site = $site;
 	}
 }

@@ -13,6 +13,8 @@ use Cose\criteria\impl\Criteria;
 class BancoCriteria extends CuentaCriteria{
 
 	private $nombre;
+	
+	private $site;
 
 
 	public function getNombre()
@@ -23,5 +25,15 @@ class BancoCriteria extends CuentaCriteria{
 	public function setNombre($nombre)
 	{
 	    $this->nombre = $nombre;
+	}
+
+	public function getSite()
+	{
+	    return $this->site;
+	}
+
+	public function setSite($site)
+	{
+	    $this->site = $site;
 	}
 }

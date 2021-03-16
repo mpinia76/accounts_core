@@ -28,8 +28,9 @@ class BancoDoctrineDAO extends CrudDAO implements IBancoDAO{
 
 		$queryBuilder = $this->getEntityManager()->createQueryBuilder();
 
-		$queryBuilder->select(array('b'))
-	   				->from( $this->getClazz(), "b");
+		$queryBuilder->select(array('b','s'))
+	   				->from( $this->getClazz(), "b")
+	   				->leftJoin('b.site', 's');
 
 		return $queryBuilder;
 	}
@@ -39,7 +40,8 @@ class BancoDoctrineDAO extends CrudDAO implements IBancoDAO{
 		$queryBuilder = $this->getEntityManager()->createQueryBuilder();
 
 		$queryBuilder->select('count(b.oid)')
-	   				->from( $this->getClazz(), "b");
+	   				->from( $this->getClazz(), "b")
+	   				->leftJoin('b.site', 's');
 
 		return $queryBuilder;
 	}
@@ -59,6 +61,16 @@ class BancoDoctrineDAO extends CrudDAO implements IBancoDAO{
 		$nombre = $criteria->getNombre();
 		if( !empty($nombre) ){
 			$queryBuilder->andWhere( "b.nombre = '$nombre'");
+		}
+		
+		$site = $criteria->getSite();
+		if( !empty($site) && $site!=null){
+			if (is_object($site)) {
+				$siteOid = $site->getOid();
+				if(!empty($siteOid))
+					$queryBuilder->andWhere( "s.oid= $siteOid" );
+			}
+			else $queryBuilder->andWhere( "s.nombre like '%$site%'");
 		}
 
 	}
