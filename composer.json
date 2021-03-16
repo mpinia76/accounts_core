@@ -1,0 +1,28 @@
+{
+    "autoload": {
+        "psr-0": {
+            "Accounts\\Core": "src/main/php",
+            "Accounts\\Core\\Test": "src/test/php",
+            "Cose": "D:/Documents/Mis Webs/codnet_services/cose/src/main/php",
+        	"Cose\\Security": "D:/Documents/Mis Webs/codnet_services/cose_security/src/main/php",
+        	"Cose\\Catalogo": "D:/Documents/Mis Webs/codnet_services/cose_catalogo/src/main/php",
+        	"Cose\\Crud": "D:/Documents/Mis Webs/codnet_services/cose_crud/src/main/php"
+
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/apache/logging-log4php"
+        }
+    ],
+    "require": {
+        "apache/log4php": "2.3.0",
+        "doctrine/orm": "2.6.2",
+        "symfony/expression-language": "~3.4|~4.0",
+        "symfony/dependency-injection": "~3.4|~4.0",
+        "doctrine/annotations": "~1.0",
+        "doctrine/common": "2.8.1",
+        "niktux/addendum": "dev-master"
+    }
+}
