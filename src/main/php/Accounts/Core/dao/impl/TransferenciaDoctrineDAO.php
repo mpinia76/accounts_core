@@ -28,9 +28,10 @@ class TransferenciaDoctrineDAO extends CrudDAO implements ITransferenciaDAO{
 
 		$queryBuilder = $this->getEntityManager()->createQueryBuilder();
 
-		$queryBuilder->select(array('t', 'o', 'd'))
+		$queryBuilder->select(array('t', 'o', 'd', 's'))
 	   				->from( $this->getClazz(), "t")
 					->leftJoin('t.origen', 'o')
+                    ->leftJoin('t.site', 's')
 					->leftJoin('t.destino', 'd');
 
 		return $queryBuilder;
@@ -43,6 +44,7 @@ class TransferenciaDoctrineDAO extends CrudDAO implements ITransferenciaDAO{
 		$queryBuilder->select('count(t.oid)')
 	   				->from( $this->getClazz(), "t")
 					->leftJoin('t.origen', 'o')
+                    ->leftJoin('t.site', 's')
 					->leftJoin('t.destino', 'd');
 
 		return $queryBuilder;
@@ -83,6 +85,16 @@ class TransferenciaDoctrineDAO extends CrudDAO implements ITransferenciaDAO{
 			if(!empty($destinoOid))
 				$queryBuilder->andWhere( "d.oid= $destinoOid" );
 		}
+
+        $site = $criteria->getSite();
+        if( !empty($site) && $site!=null){
+            if (is_object($site)) {
+                $siteOid = $site->getOid();
+                if(!empty($siteOid))
+                    $queryBuilder->andWhere( "s.oid= $siteOid" );
+            }
+            else $queryBuilder->andWhere( "s.nombre like '%$site%'");
+        }
 
 	}
 

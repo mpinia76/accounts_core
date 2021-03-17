@@ -2,6 +2,7 @@
 namespace Accounts\Core\service;
 
 
+use Accounts\Core\criteria\GastoCriteria;
 use Accounts\Core\model\Gasto;
 
 use Accounts\Core\model\Cuenta;
@@ -37,5 +38,5 @@ interface IGastoService extends ICrudService {
 	/**
 	 * se obtienen los gastos por vencer
 	 */
-	public function getGastosPorVencer();
+	public function getGastosPorVencer(GastoCriteria $criteria);
 }

@@ -28,8 +28,9 @@ class GastoDoctrineDAO extends CrudDAO implements IGastoDAO{
 
 		$queryBuilder = $this->getEntityManager()->createQueryBuilder();
 
-		$queryBuilder->select(array('g', 'cg'))
+		$queryBuilder->select(array('g', 'cg', 's'))
 	   				->from( $this->getClazz(), "g")
+                    ->leftJoin('g.site', 's')
 					->leftJoin('g.concepto', 'cg');
 
 		return $queryBuilder;
@@ -41,6 +42,7 @@ class GastoDoctrineDAO extends CrudDAO implements IGastoDAO{
 
 		$queryBuilder->select('count(g.oid)')
 	   				->from( $this->getClazz(), "g")
+                    ->leftJoin('g.site', 's')
 					->leftJoin('g.concepto', 'cg');
 
 		return $queryBuilder;
@@ -111,6 +113,16 @@ class GastoDoctrineDAO extends CrudDAO implements IGastoDAO{
 		if( !empty($observaciones) ){
 			$queryBuilder->andWhere( "g.observaciones like '%$observaciones%'");
 		}
+
+        $site = $criteria->getSite();
+        if( !empty($site) && $site!=null){
+            if (is_object($site)) {
+                $siteOid = $site->getOid();
+                if(!empty($siteOid))
+                    $queryBuilder->andWhere( "s.oid= $siteOid" );
+            }
+            else $queryBuilder->andWhere( "s.nombre like '%$site%'");
+        }
 
 	}
 

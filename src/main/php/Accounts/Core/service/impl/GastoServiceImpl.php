@@ -180,12 +180,12 @@ class GastoServiceImpl extends CrudService implements IGastoService {
 	 * (non-PHPdoc)
 	 * @see src/main/php/Accounts/Core/service/Accounts\Core\service.IGastoService::getGastosPorVencer()
 	 */
-	public function getGastosPorVencer(){
+	public function getGastosPorVencer( GastoCriteria $criteria ){
 
 		$fechaVencimientoHasta = new \Datetime();
 		$fechaVencimientoHasta->modify("+30 day");
 
-		$criteria = new GastoCriteria();
+		//$criteria = new GastoCriteria();
 		$criteria->setFechaVencimientoHasta($fechaVencimientoHasta);
 		$criteria->setEstadosNotIn( array( EstadoGasto::Pagado, EstadoGasto::Anulado ) );
 		$criteria->addOrder("fechaVencimiento", "ASC");

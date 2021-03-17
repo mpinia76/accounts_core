@@ -32,6 +32,24 @@ class GastoCriteria extends Criteria{
 
 	private $estadosNotIn;
 
+    private $site;
+
+    /**
+     * @return mixed
+     */
+    public function getSite()
+    {
+        return $this->site;
+    }
+
+    /**
+     * @param mixed $site
+     */
+    public function setSite($site)
+    {
+        $this->site = $site;
+    }
+
 
 	public function getFecha()
 	{

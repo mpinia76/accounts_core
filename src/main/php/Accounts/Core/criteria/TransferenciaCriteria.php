@@ -24,6 +24,24 @@ class TransferenciaCriteria extends Criteria{
 
 	private $destino;
 
+    private $site;
+
+    /**
+     * @return mixed
+     */
+    public function getSite()
+    {
+        return $this->site;
+    }
+
+    /**
+     * @param mixed $site
+     */
+    public function setSite($site)
+    {
+        $this->site = $site;
+    }
+
 
 	public function getOidNotEqual()
 	{
