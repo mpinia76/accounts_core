@@ -20,6 +20,24 @@ class MovimientoCuentaCriteria extends Criteria{
 
 	private $cuenta;
 
+    private $cuentas;
+
+    /**
+     * @return mixed
+     */
+    public function getCuentas()
+    {
+        return $this->cuentas;
+    }
+
+    /**
+     * @param mixed $cuentas
+     */
+    public function setCuentas($cuentas)
+    {
+        $this->cuentas = $cuentas;
+    }
+
 
 
 	public function getFecha()

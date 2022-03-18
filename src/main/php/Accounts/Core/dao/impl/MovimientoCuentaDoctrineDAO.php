@@ -88,6 +88,14 @@ class MovimientoCuentaDoctrineDAO extends CrudDAO implements IMovimientoCuentaDA
 			if(!empty($cuentaOid))
 				$queryBuilder->andWhere( "cu.oid= $cuentaOid" );
 		}
+
+        $cuentas = $criteria->getCuentas();
+        if( !empty($cuentas)  ){
+
+            $strCuentas = implode(",", $cuentas );
+
+            $queryBuilder->andWhere( $queryBuilder->expr()->in("cu.oid", $strCuentas) );
+        }
 	}
 
 //	public function getTotales(Cuenta $cuenta, \Datetime $fecha = null){
