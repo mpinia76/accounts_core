@@ -69,7 +69,7 @@ class TransferenciaDoctrineDAO extends CrudDAO implements ITransferenciaDAO{
 
 		$fechaHasta = $criteria->getFechaHasta();
 		if( !empty($fechaHasta) ){
-			$queryBuilder->andWhere( "t.fecha <= '" . $fechaHasta->format("Y-m-d") . "'");
+			$queryBuilder->andWhere( "t.fecha <= '" . $fechaHasta->format("Y-m-d") . " 23:59:59'");
 		}
 
 		$origen = $criteria->getOrigen();

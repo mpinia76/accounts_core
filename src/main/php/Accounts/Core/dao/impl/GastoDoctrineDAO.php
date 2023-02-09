@@ -62,7 +62,7 @@ class GastoDoctrineDAO extends CrudDAO implements IGastoDAO{
 
 		$fechaHasta = $criteria->getFechaHasta();
 		if( !empty($fechaHasta) ){
-			$queryBuilder->andWhere( "g.fechaHora <= '" . $fechaHasta->format("Y-m-d") . "'");
+			$queryBuilder->andWhere( "g.fechaHora <= '" . $fechaHasta->format("Y-m-d") . " 23:59:59'");
 		}
 
 		$concepto = $criteria->getConcepto();

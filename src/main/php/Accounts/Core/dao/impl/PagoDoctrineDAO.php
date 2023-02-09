@@ -64,7 +64,7 @@ class PagoDoctrineDAO extends CrudDAO implements IPagoDAO{
 
 		$fechaHasta = $criteria->getFechaHasta();
 		if( !empty($fechaHasta) ){
-			$queryBuilder->andWhere( "p.fechaHora <= '" . $fechaHasta->format("Y-m-d") . "'");
+			$queryBuilder->andWhere( "p.fechaHora <= '" . $fechaHasta->format("Y-m-d") . " 23:59:59'");
 		}
 
 		$vendedor = $criteria->getVendedor();

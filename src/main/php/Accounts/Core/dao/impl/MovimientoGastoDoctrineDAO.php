@@ -154,7 +154,7 @@ class MovimientoGastoDoctrineDAO extends CrudDAO implements IMovimientoGastoDAO{
 
 
 			$queryBuilder->andWhere( "mc.fechaHora >= '" . $fechaDesde->format("Y-m-d") . "'");
-			$queryBuilder->andWhere( "mc.fechaHora <= '" . $fechaHasta->format("Y-m-d") . "'");
+			$queryBuilder->andWhere( "mc.fechaHora <= '" . $fechaHasta->format("Y-m-d") . " 23:59:59'");
 
 
 			$q = $queryBuilder->getQuery();

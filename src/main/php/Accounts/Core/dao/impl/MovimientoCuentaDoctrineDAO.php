@@ -78,7 +78,7 @@ class MovimientoCuentaDoctrineDAO extends CrudDAO implements IMovimientoCuentaDA
 
 		$fechaHasta = $criteria->getFechaHasta();
 		if( !empty($fechaHasta) ){
-			$queryBuilder->andWhere( "mc.fechaHora <= '" . $fechaHasta->format("Y-m-d") . "'");
+			$queryBuilder->andWhere( "mc.fechaHora <= '" . $fechaHasta->format("Y-m-d") . " 23:59:59'");
 		}
 
 

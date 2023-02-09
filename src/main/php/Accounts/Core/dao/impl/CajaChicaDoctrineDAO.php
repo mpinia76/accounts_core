@@ -69,7 +69,7 @@ class CajaChicaDoctrineDAO extends CrudDAO implements ICajaChicaDAO{
 
 		$fechaHasta = $criteria->getFechaHasta();
 		if( !empty($fechaHasta) ){
-			$queryBuilder->andWhere( "c.fecha <= '" . $fechaHasta->format("Y-m-d") . "'");
+			$queryBuilder->andWhere( "c.fecha <= '" . $fechaHasta->format("Y-m-d") . " 23:59:59'");
 		}
 
 		$sucursal = $criteria->getSucursal();

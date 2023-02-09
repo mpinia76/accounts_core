@@ -72,7 +72,7 @@ class CajaDoctrineDAO extends CrudDAO implements ICajaDAO{
 
 		$fechaHasta = $criteria->getFechaHasta();
 		if( !empty($fechaHasta) ){
-			$queryBuilder->andWhere( "c.fecha <= '" . $fechaHasta->format("Y-m-d") . "'");
+			$queryBuilder->andWhere( "c.fecha <= '" . $fechaHasta->format("Y-m-d") . " 23:59:59'");
 		}
 
 		$cajero = $criteria->getCajero();
